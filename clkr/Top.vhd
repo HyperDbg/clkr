@@ -1,0 +1,49 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY Top IS
+	PORT (INPUT_CLK : IN STD_LOGIC_VECTOR (0 DOWNTO 0));
+END Top;
+
+ARCHITECTURE Behavioral OF Top IS
+
+	-- RAM signals
+	SIGNAL RAM_ADDR : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0000100"; 
+	SIGNAL RAM_DATA_IN : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL RAM_WR : STD_LOGIC;
+	SIGNAL RAM_CLOCK : STD_LOGIC; 
+	SIGNAL RAM_DATA_OUT : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+	-- Clock signal for testing purposes
+	SIGNAL CLK : STD_LOGIC := '0';
+	
+	-- Instantiate components
+	COMPONENT RAM
+	PORT (
+		RAM_ADDR : IN STD_LOGIC_VECTOR(6 DOWNTO 0); -- Address to write/read RAM
+		RAM_DATA_IN : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- Data to write into RAM
+		RAM_WR : IN STD_LOGIC; -- Write enable
+		RAM_CLOCK : IN STD_LOGIC; -- clock input for RAM
+		RAM_DATA_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0) -- Data output of RAM
+	);
+	END COMPONENT;
+
+BEGIN
+	
+	-- Using RAM
+	RAM_UNT: RAM PORT MAP (RAM_ADDR => RAM_ADDR,
+								  RAM_DATA_IN => RAM_DATA_IN,
+								  RAM_WR => RAM_WR,
+								  RAM_CLOCK => CLK,
+								  RAM_DATA_OUT => RAM_DATA_OUT
+								  );
+	
+	
+	-- Create testing signal
+	PROCESS
+	BEGIN
+		CLK <= NOT CLK;
+		WAIT FOR 1 ns;
+	END PROCESS;
+
+END Behavioral;

@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "C:/Users/sina/Desktop/HyperDbg/clkr/Top_isim_beh.exe" -prj "C:/Users/sina/Desktop/HyperDbg/clkr/Top_beh.prj" "Top" 
