@@ -1,41 +1,43 @@
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
-USE ieee.numeric_std.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
-ENTITY register_file IS
+ENTITY REGISTER_FILE IS
 	PORT (
-		outA : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
-		outB : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
-		input : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
-		writeEnable : IN STD_LOGIC;
-		regASel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		regBSel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		writeRegSel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-		clk : IN STD_LOGIC
+		OUT_REG_A : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+		OUT_REG_B : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+		INPUT_VAL : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+		WRITE_ENABLE : IN STD_LOGIC;
+		SEL_REG_A : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		SEL_REG_B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		WRITE_REG_SEL : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		CLK : IN STD_LOGIC
 	);
-END register_file;
+END REGISTER_FILE;
 
-ARCHITECTURE behavioral OF register_file IS
-	TYPE registerFile IS ARRAY(0 TO 15) OF STD_LOGIC_VECTOR(63 DOWNTO 0);
-	SIGNAL registers : registerFile;
+ARCHITECTURE Behavioral OF REGISTER_FILE IS
+	TYPE REGISTER_FILE_TYPE IS ARRAY(0 TO 15) OF STD_LOGIC_VECTOR(63 DOWNTO 0);
+	SIGNAL REGISTERS : REGISTER_FILE_TYPE;
 BEGIN
 
-	regFile : PROCESS (clk) IS
+	RegFile : PROCESS (CLK) IS
 	BEGIN
-		IF rising_edge(clk) THEN
+		IF rising_edge(CLK) THEN
+		
 			-- Read A and B before bypass
-			outA <= registers(to_integer(unsigned(regASel)));
-			outB <= registers(to_integer(unsigned(regBSel)));
+			OUT_REG_A <= registers(to_integer(unsigned(SEL_REG_A)));
+			OUT_REG_B <= registers(to_integer(unsigned(SEL_REG_B)));
+
 			-- Write and bypass
-			IF writeEnable = '1' THEN
-				registers(to_integer(unsigned(writeRegSel))) <= input; -- Write
-				IF regASel = writeRegSel THEN -- Bypass for read A
-					outA <= input;
+			IF WRITE_ENABLE = '1' THEN
+				registers(to_integer(unsigned(WRITE_REG_SEL))) <= INPUT_VAL; -- Write
+				IF SEL_REG_A = WRITE_REG_SEL THEN -- Bypass for read A
+          OUT_REG_A <= INPUT_VAL;
 				END IF;
-				IF regBSel = writeRegSel THEN -- Bypass for read B
-					outB <= input;
+				IF SEL_REG_B = WRITE_REG_SEL THEN -- Bypass for read B
+          OUT_REG_B <= INPUT_VAL;
 				END IF;
 			END IF;
 		END IF;
 	END PROCESS;
-END behavioral;
+END Behavioral;

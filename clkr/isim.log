@@ -1,5 +1,5 @@
 ISim log file
-Running: C:\Users\sina\Desktop\HyperDbg\clkr\Top_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/sina/Desktop/HyperDbg/clkr/Top_isim_beh.wdb 
+Running: C:\Users\sina\Desktop\HyperDbg\clkr\clkr\TOP_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/sina/Desktop/HyperDbg/clkr/clkr/TOP_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
 INFO:Security:51 - The XILINXD_LICENSE_FILE environment variable is not set.

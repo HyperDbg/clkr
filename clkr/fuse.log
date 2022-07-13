@@ -1,10 +1,10 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -o C:/Users/sina/Desktop/HyperDbg/clkr/Top_isim_beh.exe -prj C:/Users/sina/Desktop/HyperDbg/clkr/Top_beh.prj Top 
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -o C:/Users/sina/Desktop/HyperDbg/clkr/clkr/TOP_isim_beh.exe -prj C:/Users/sina/Desktop/HyperDbg/clkr/clkr/TOP_beh.prj work.TOP 
 ISim P.20131013 (signature 0x7708f090)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
-Parsing VHDL file "C:/Users/sina/Desktop/HyperDbg/clkr/RAM.vhd" into library work
-Parsing VHDL file "C:/Users/sina/Desktop/HyperDbg/clkr/Top.vhd" into library work
+Parsing VHDL file "C:/Users/sina/Desktop/HyperDbg/clkr/clkr/RAM.vhd" into library work
+Parsing VHDL file "C:/Users/sina/Desktop/HyperDbg/clkr/clkr/Top.vhd" into library work
 Starting static elaboration
 Completed static elaboration
 Compiling package standard
@@ -13,7 +13,8 @@ Compiling package numeric_std
 Compiling architecture behavioral of entity RAM [ram_default]
 Compiling architecture behavioral of entity top
 Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
 Compiled 6 VHDL Units
-Built simulation executable C:/Users/sina/Desktop/HyperDbg/clkr/Top_isim_beh.exe
-Fuse Memory Usage: 36832 KB
-Fuse CPU Usage: 593 ms
+Built simulation executable C:/Users/sina/Desktop/HyperDbg/clkr/clkr/TOP_isim_beh.exe
+Fuse Memory Usage: 36584 KB
+Fuse CPU Usage: 546 ms
