@@ -27,4 +27,4 @@ Time resolution is 1 ps
 # wave add /
 # run 1000 ns
 Simulator is doing circuit initialization process.
-Finished circuit initialization process.
+Stopped at time : 0 fs : File "C:/Users/sina/Desktop/HyperDbg/clkr/clkr/Top.vhd" Line 59

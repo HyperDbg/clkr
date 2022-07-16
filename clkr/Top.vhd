@@ -13,6 +13,10 @@ ARCHITECTURE Behavioral OF TOP IS
 	SIGNAL RAM_WR : STD_LOGIC;
 	SIGNAL RAM_CLOCK : STD_LOGIC; 
 	SIGNAL RAM_DATA_OUT : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	
+	-- RAM initialization signal
+	SIGNAL IS_RAM_INITALIZED : STD_LOGIC := '0';
+	SIGNAL PERFORM_RAM_INIT : STD_LOGIC := '0';
 
 	-- Clock signal for testing purposes
 	SIGNAL CLK : STD_LOGIC := '0';
@@ -27,6 +31,13 @@ ARCHITECTURE Behavioral OF TOP IS
 		RAM_DATA_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0) -- Data output of RAM
 	);
 	END COMPONENT;
+	
+	COMPONENT RAM_INIT 
+	PORT (
+		CLK : IN STD_LOGIC;
+		PERFORM_INIT : IN STD_LOGIC
+	);
+	END COMPONENT;
 
 BEGIN
 	
@@ -37,7 +48,19 @@ BEGIN
 								  RAM_CLOCK => CLK,
 								  RAM_DATA_OUT => RAM_DATA_OUT
 								  );
-	
+								  
+	-- Initialize RAM
+	RAM_INITIALIZE: RAM_INIT PORT MAP (CLK => CLK,
+								  PERFORM_INIT => PERFORM_RAM_INIT
+								  );
+								  
+	PROCESS 
+	BEGIN
+		IF IS_RAM_INITALIZED = '0'
+		THEN
+			PERFORM_RAM_INIT <= '1';
+		END IF;
+	END PROCESS;
 	
 	-- Create testing signal
 	PROCESS
